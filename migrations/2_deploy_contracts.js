@@ -1,7 +1,7 @@
 var ERC20TestToken = artifacts.require("./ERC20TestToken.sol");
-var TokenCheckingAccount = artifacts.require("./TokenCheckingAccount.sol");
+var TokenDrop = artifacts.require("./TokenDrop.sol");
 
 module.exports = function(deployer) {
   deployer.deploy(ERC20TestToken);
-  deployer.deploy(TokenCheckingAccount);
+  deployer.deploy(TokenDrop);
 };
