@@ -16,7 +16,7 @@ import "./SafeMath.sol";
  *  1. Generate a series of accounts (eg, using a mnemonic generator)
  *  2. Add an ERC20 authorisation for the TokenCheckingAccount contract
  *     sufficient to cover the number of tokens being distributed.
- *  4. Call TokenCheckingAccount.deposit() with the list of account addresses,
+ *  3. Call TokenCheckingAccount.deposit() with the list of account addresses,
  *     the ERC20 token address, and the number of tokens to allocate to each address.
  * 
  * Redeeming:
