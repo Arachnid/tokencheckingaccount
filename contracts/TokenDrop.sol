@@ -43,7 +43,7 @@ contract TokenDrop is SafeMath {
      */
     function deposit(IERC20Token token, address[] addresses, uint quantity) {
         // Transfer the required number of tokens to us
-        require(token.transferFrom(msg.sender, this, quantity * addresses.length));
+        assert(token.transferFrom(msg.sender, this, quantity * addresses.length));
 
         for(var i = 0; i < addresses.length; i++) {
             var addr = addresses[i];
@@ -63,11 +63,11 @@ contract TokenDrop is SafeMath {
     function redeemFor(IERC20Token token, address recipient, uint8 v, bytes32 r, bytes32 s) {
         var addr = ecrecover(sha3(address(this), token, recipient), v, r, s);
         var quantity = balances[token][addr];
-        require(quantity > 0);
+        assert(quantity > 0);
         delete balances[token][addr];
         
         TokensRedeemed(token, addr, recipient, quantity);
-        require(token.transfer(recipient, quantity));
+        assert(token.transfer(recipient, quantity));
     }
     
     /**
@@ -87,10 +87,10 @@ contract TokenDrop is SafeMath {
     */
     function withdraw(IERC20Token token) {
         var quantity = balances[token][msg.sender];
-        require(quantity > 0);
+        assert(quantity > 0);
         delete balances[token][msg.sender];
         
         TokensRedeemed(token, msg.sender, msg.sender, quantity);
-        require(token.transfer(msg.sender, quantity));
+        assert(token.transfer(msg.sender, quantity));
     }
 }
